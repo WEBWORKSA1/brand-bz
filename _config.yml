@@ -1,0 +1,5 @@
+# GitHub Pages renders this site with Jekyll (free plan, main branch, root).
+title: Brand.bz
+url: https://brand.bz
+exclude: [README.md, BUILD-PROMPT.md, scripts, Gemfile, Gemfile.lock]
+include: [ads.txt]

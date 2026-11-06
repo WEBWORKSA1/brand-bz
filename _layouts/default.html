@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title_full }}</title>
+<meta name="description" content="{{ page.description | escape }}">
+<link rel="canonical" href="{{ page.canonical }}">
+<meta name="google-adsense-account" content="ca-pub-6620975821265271">
+<meta property="og:title" content="{{ page.title_full | escape }}"><meta property="og:description" content="{{ page.description | escape }}"><meta property="og:type" content="{{ page.og_type }}"><meta property="og:url" content="{{ page.canonical }}"><meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#6d3cff">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6620975821265271" crossorigin="anonymous"></script>
+<script src="assets/js/main.js" defer></script>
+{% if page.tools %}<script src="assets/js/tools.js" defer></script>{% endif %}
+</head>
+<body>
+<div class="topbar">Contact, if you are interested in this website / domain name / Sponsorship / Advertisement / Partnership — <a href="https://web.works/contact" target="_blank" rel="noopener">web.works/contact</a></div>
+{% include header.html %}
+<main id="main">
+{{ content }}
+</main>
+{% include footer.html %}
+</body>
+</html>

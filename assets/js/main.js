@@ -86,14 +86,21 @@
     });
   }
 
-  // self-updating headlines (data/news.json is refreshed by a scheduled GitHub Action)
+  // self-updating headlines: live Google News RSS (via rss2json) with data/news.json as fallback
+  var FEEDS=[['Branding','branding strategy'],['Rebrand','rebrand new logo'],['Marketing','brand marketing small business'],['Design','brand identity design']];
+  function renderNews(box,items,lim,updated){
+    if(!items.length)return;
+    box.innerHTML=items.slice(0,lim).map(function(n){return '<article class="card news-item"><span class="tag">'+esc(n.topic||'Branding')+'</span><a href="'+esc(n.link)+'" target="_blank" rel="noopener nofollow"><b>'+esc(n.title)+'</b></a><span class="src">'+esc(n.source||'')+(n.date?' · '+esc(n.date):'')+'</span></article>'}).join('');
+    var up=$('[data-news-updated]');if(up&&updated)up.textContent=updated;
+  }
   function initNews(){
-    var box=$('[data-news]');if(!box)return;var lim=+box.getAttribute('data-news')||12;var base=box.getAttribute('data-base')||'';
-    fetch(base+'data/news.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
-      var items=(d.items||[]).slice(0,lim);if(!items.length)return;
-      box.innerHTML=items.map(function(n){return '<article class="card news-item"><span class="tag">'+esc(n.topic||'Branding')+'</span><a href="'+esc(n.link)+'" target="_blank" rel="noopener nofollow"><b>'+esc(n.title)+'</b></a><span class="src">'+esc(n.source||'')+(n.date?' · '+esc(n.date):'')+'</span></article>'}).join('');
-      var up=$('[data-news-updated]');if(up&&d.updated)up.textContent=d.updated;
-    }).catch(function(){});
+    var box=$('[data-news]');if(!box)return;var lim=+box.getAttribute('data-news')||12;
+    function fallback(){fetch('data/news.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){renderNews(box,d.items||[],lim,d.updated)}).catch(function(){})}
+    var reqs=FEEDS.map(function(f){var rss='https://news.google.com/rss/search?q='+encodeURIComponent(f[1])+'&hl=en-US&gl=US&ceid=US:en';
+      return fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(rss)).then(function(r){return r.json()}).then(function(d){
+        return (d.items||[]).map(function(it){var t=it.title||'',src='',k=t.lastIndexOf(' - ');if(k>0){src=t.slice(k+3);t=t.slice(0,k)}var dt=new Date((it.pubDate||'').replace(' ','T')+'Z');return{title:t,link:it.link,source:src,topic:f[0],ts:+dt||0,date:isNaN(dt)?'':dt.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}})}).catch(function(){return[]})});
+    Promise.all(reqs).then(function(all){var seen={},items=[].concat.apply([],all).filter(function(n){var k=n.title.toLowerCase().slice(0,70);if(!n.title||seen[k])return false;seen[k]=1;return true}).sort(function(a,b){return b.ts-a.ts});
+      if(items.length)renderNews(box,items,lim,'live · '+new Date().toLocaleString());else fallback()}).catch(fallback);
   }
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 
