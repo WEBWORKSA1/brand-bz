@@ -20,7 +20,7 @@ Paste each phase below into an AI coding assistant in order. Each phase must be 
 > - Create `ads.txt` containing `google.com, pub-6620975821265271, DIRECT, f08c47fec0942fa0`, plus robots.txt, sitemap.xml, a web manifest, a favicon, an OG image, canonical tags, Open Graph tags and JSON-LD (WebSite, Organization, Article, FAQPage).
 > - Pages: About, Contact, Privacy Policy (including Google's required AdSense cookie language and opt-out links), Terms, Cookie Policy, a Trademark & Copyright Disclosure (stating that "brand" is used only as a generic word, with no affiliation to any "brand"-named company and all third-party marks belonging to their owners) and a 404 page.
 > - Add a cookie consent banner and a footer with the copyright and trademark disclosure.
-> - Generate the pages from one Python template (`scripts/build.py`) so the header and footer stay identical.
+> - Use Jekyll (built into GitHub Pages): one `_layouts/default.html` plus `_includes/` header and footer, so every page shares identical chrome with no build step.
 
 ## Phase 2 — Free tools (the traffic engine)
 > Build 8 client-side tools. Each one gets its own SEO page with 150–300 words of original explanatory content and an audit CTA.
@@ -50,9 +50,9 @@ Paste each phase below into an AI coding assistant in order. Each phase must be 
 > - **Careers / Talent network**: 6 roles and an application form.
 
 ## Phase 6 — Automation & self-updating
-> - `scripts/update_news.py` pulls branding, rebrand, marketing and design headlines from Google News RSS into `data/news.json`, storing headlines and links only.
-> - `.github/workflows/update-news.yml` runs daily (and on demand), refreshes the news, rebuilds the pages and sitemap, and commits to `main`, which redeploys GitHub Pages automatically.
-> - The homepage and news page render the JSON client-side and show a "last updated" stamp.
+> - The news section fetches live Google News RSS headlines in the browser (via rss2json, headlines and links only) and falls back to `data/news.json`. It shows a "last updated" stamp.
+> - Optional: `scripts/update_news.py` plus a daily GitHub Action (template in `scripts/github-workflow-update-news.yml`) refresh `data/news.json` server-side and commit to `main`, which redeploys Pages automatically.
+> - The tip of the day rotates by date.
 
 ## Phase 7 — QA, deploy & AdSense application
 > Test every tool in a headless browser, check for JS errors, broken internal links and email exposure (grep), and check the mobile and desktop layouts. Then:
