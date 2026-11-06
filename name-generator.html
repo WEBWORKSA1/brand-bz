@@ -1,0 +1,18 @@
+---
+layout: default
+title_full: "Brand Name Generator | Brand.bz"
+description: "Free AI-style brand name generator. Create brandable business names and check .com, .bz, social handles and trademark databases instantly."
+canonical: "https://brand.bz/name-generator.html"
+og_type: website
+tools: true
+---
+{% raw %}
+<section class="hero" style="padding:56px 0 40px"><div class="container"><div class="crumbs"><a href="index.html">Home</a> › <a href="tools.html">Tools</a> › Brand Name Generator</div><span class="pill">Free tool</span><h1>Brand Name Generator</h1><p class="lead">Enter a few keywords, choose a vibe and get 30 brandable names with one-click domain, social and trademark checks.</p></div></section><section style="padding-top:20px"><div class="container"><div class="tool-wrap"><form class="card" id="nameGen">
+  <div class="field"><label for="ngKw">Keywords</label><input id="ngKw" placeholder="e.g. coffee travel" required></div>
+  <div class="field"><label for="ngVibe">Vibe</label><select id="ngVibe"><option value="modern">Modern</option><option value="playful">Playful</option><option value="luxury">Luxury</option><option value="trust">Trustworthy</option><option value="eco">Eco & natural</option><option value="tech">Tech</option></select></div>
+  <div class="field"><label for="ngStyle">Style</label><select id="ngStyle"><option value="mix">Mixed</option><option value="short">Short (≤7 letters)</option><option value="compound">Compound words</option><option value="invented">Invented words</option></select></div>
+  <button class="btn btn-primary btn-block" type="submit">Generate names</button>
+  <hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b>♥ Saved names</b><div class="chips" id="favList" style="margin-top:8px"></div><button type="button" class="btn btn-ghost btn-sm" id="clearFavs" style="margin-top:10px">Clear saved</button>
+ </form><div><div class="results" id="ngResults"><p class="muted">Your names will appear here.</p></div></div></div>
+ <script>document.addEventListener('DOMContentLoaded',function(){var k=new URLSearchParams(location.search).get('kw');if(k){document.getElementById('ngKw').value=k;setTimeout(function(){document.getElementById('nameGen').requestSubmit()},50)}})</script></div></section><section class="section-alt"><div class="container narrow article" style="padding:0"><h2>How to use the brand name generator</h2><p>Start with two or three words that describe your product, audience or the feeling you want to create. The generator combines them with curated word banks using five naming techniques: suffixes, prefixes, word blending, compounds and invented words. Choose <b>Invented</b> for highly distinctive names that are easier to trademark, or <b>Short</b> if you want something punchy for a domain.</p><h3>Checking a name</h3><p>Each card links to domain searches, social handles and the USPTO, CIPO and WIPO trademark databases. These are preliminary checks; read our <a href="learn-how-to-name-a-business.html">7-step naming framework</a> before you commit.</p><h3>Privacy</h3><p>Names are generated on your device. Saved favourites stay in your browser.</p><div class="cta-box"><h3>Want an expert eye on your brand?</h3><p>Get a free, personalised brand audit with clear next steps — no obligation.</p><a class="btn" href="audit.html">Request my free audit →</a></div></div></section>
+{% endraw %}

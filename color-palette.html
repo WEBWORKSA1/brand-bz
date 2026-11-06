@@ -1,0 +1,17 @@
+---
+layout: default
+title_full: "Brand Color Palette Generator | Brand.bz"
+description: "Free brand color palette generator with harmony modes, locking, WCAG contrast checks and CSS variable export."
+canonical: "https://brand.bz/color-palette.html"
+og_type: website
+tools: true
+---
+{% raw %}
+<section class="hero" style="padding:56px 0 40px"><div class="container"><div class="crumbs"><a href="index.html">Home</a> › <a href="tools.html">Tools</a> › Brand Color Palette Generator</div><span class="pill">Free tool</span><h1>Brand Color Palette Generator</h1><p class="lead">Generate a five-role brand palette. Click a swatch to copy its HEX code, lock favourites and press space to shuffle.</p></div></section><section style="padding-top:20px"><div class="container"><div class="card no-print" style="margin-bottom:18px;display:flex;gap:14px;flex-wrap:wrap;align-items:end">
+  <div><label for="palMode">Harmony</label><select id="palMode"><option value="analogous">Analogous</option><option value="complementary">Complementary</option><option value="triadic">Triadic</option><option value="split">Split-complementary</option><option value="mono">Monochrome</option></select></div>
+  <div><label for="palBase">Base color</label><input type="color" id="palBase" value="#6d3cff" style="width:70px;height:46px;padding:4px"></div>
+  <label class="chip"><input type="checkbox" id="useBase">Use base color</label>
+  <button class="btn btn-primary" id="palGo" type="button">Generate (space)</button></div>
+ <div class="swatches" id="swatches"></div>
+ <div class="card" style="margin-top:18px"><label for="palCss">CSS variables</label><textarea id="palCss" rows="7" readonly style="font-family:monospace"></textarea><button class="btn btn-ghost btn-sm" id="palCopy" type="button" style="margin-top:10px">Copy CSS</button> <a class="btn btn-ghost btn-sm" href="brand-guide.html" style="margin-top:10px">Use in brand guide →</a></div></div></section><section class="section-alt"><div class="container narrow article" style="padding:0"><h2>Using your palette</h2><p>Each swatch has a role: primary, secondary, accent, light background and dark text. The label shows whether white or dark text passes WCAG AA contrast (4.5:1). Apply roughly the 60-30-10 rule: 60% neutrals, 30% secondary, 10% accent and primary for key actions.</p><p>Learn more in <a href="learn-brand-color-psychology.html">Brand Colors: Psychology, Palettes and the 60-30-10 Rule</a>.</p><div class="cta-box"><h3>Want an expert eye on your brand?</h3><p>Get a free, personalised brand audit with clear next steps — no obligation.</p><a class="btn" href="audit.html">Request my free audit →</a></div></div></section>
+{% endraw %}
